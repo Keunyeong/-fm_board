@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
+import styles from './login.module.scss'
 
 const Login = () => {
   return (
-    <div>
-      <Link to='/team'>팀 짜러가기</Link>
-    </div>
+    <main className={styles.main}>
+      <Link to='/team' className={styles.linkBtn}>
+        TEAM
+      </Link>
+    </main>
   )
 }
 
