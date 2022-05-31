@@ -7,3 +7,10 @@
   -webkit-line-clamp: $line;
   -webkit-box-orient: vertical;
 }
+
+@mixin head26() {
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 30px;
+}

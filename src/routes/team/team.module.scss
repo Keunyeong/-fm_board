@@ -1,7 +1,100 @@
+@use '../../styles/mixins/typography';
+
+.head {
+  width: 100%;
+  height: 60px;
+
+  h1 {
+    @include typography.head26;
+  }
+}
+
 .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.formBox {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  @media screen and (max-width: 720px) {
+    flex-direction: column;
+  }
+
+  h2 {
+    margin-right: 20px;
+  }
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media screen and (max-width: 720px) {
+    flex-direction: column;
+  }
+
+  label {
+    margin-right: 10px;
+  }
+
+  input {
+    width: 100px;
+    margin-right: 10px;
+    text-align: center;
+    border-bottom: 1px solid black;
+  }
+
+  button {
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+  }
+}
+
+.playerList {
+  width: 350px;
+
+  .li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    margin: 5px 0;
+    border: 1px solid blue;
+    border-radius: 10px;
+
+    div {
+      width: 100px;
+      text-align: center;
+    }
+
+    button {
+      width: 100px;
+      text-align: center;
+    }
+  }
+
+  .liHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid black;
+
+    div {
+      width: 100px;
+      text-align: center;
+    }
+
+    button {
+      width: 100px;
+      text-align: center;
+    }
+  }
 }
