@@ -1,6 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { getTeamInfo, setTeamMemberData } from '../../firebase/firebase'
 import { teamInfo } from '../../store/atom'
 import { ITeamInfo } from '../../types/types.d'
@@ -8,8 +8,10 @@ import styles from './signin.module.scss'
 
 const Signin = () => {
   const nav = useNavigate()
-  const setTeamInfo = useSetRecoilState(teamInfo)
-
+  const [team, setTeamInfo] = useRecoilState(teamInfo)
+  useEffect(() => {
+    if (team.teamName !== '') nav('/')
+  }, [nav, team.teamName])
   const [signinTeamInfo, setSigninTeamInfo] = useState<ITeamInfo>({
     teamName: '',
     password: '',

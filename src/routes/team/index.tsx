@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+import { setTeamMemberData } from '../../firebase/firebase'
 import { teamInfo } from '../../store/atom'
 import { IPlayerInfo } from '../../types/types.d'
 
@@ -27,11 +28,15 @@ const Team = () => {
     if (playerInfo.num === '') return
     const numArr = team.member.map((item) => Number(item.num))
     if (numArr.includes(Number(playerInfo.num))) return
-    setTeam((prev) => ({ ...prev, member: [...prev.member, playerInfo] }))
+    const newTeamInfo = { ...team, member: [...team.member, playerInfo] }
+    setTeamMemberData(team.teamName, newTeamInfo)
+    setTeam(newTeamInfo)
   }
   const handleDeletePlayerBtnClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { num } = e.currentTarget.dataset
-    setTeam((prev) => ({ ...prev, member: prev.member.filter((item) => item.num !== num) }))
+    const newTeamInfo = { ...team, member: team.member.filter((item) => item.num !== num) }
+    setTeamMemberData(team.teamName, newTeamInfo)
+    setTeam(newTeamInfo)
   }
 
   const PlayerList = team.member.map((item, index) => {
@@ -51,7 +56,7 @@ const Team = () => {
   return (
     <main className={styles.main}>
       <div className={styles.head}>
-        <h1>TEAM</h1>
+        <h1>TEAM - {team.teamName}</h1>
         {team.member.length >= 11 && <Link to='/squard'>스쿼드</Link>}
       </div>
       <div className={styles.formBox}>

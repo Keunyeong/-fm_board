@@ -1,6 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useSetRecoilState } from 'recoil'
+import { useResetRecoilState, useSetRecoilState } from 'recoil'
 import { getTeamInfo } from '../../firebase/firebase'
 import { teamInfo } from '../../store/atom'
 import styles from './login.module.scss'
@@ -8,7 +8,11 @@ import styles from './login.module.scss'
 const Login = () => {
   const nav = useNavigate()
   const setTeamInfo = useSetRecoilState(teamInfo)
+  const resetTeamInfo = useResetRecoilState(teamInfo)
   const [loginTeamInfo, setLoginTeamInfo] = useState({ teamName: '', password: '' })
+  useEffect(() => {
+    resetTeamInfo()
+  }, [resetTeamInfo])
   const handleLoginInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget
     setLoginTeamInfo((prev) => ({ ...prev, [name]: value }))
