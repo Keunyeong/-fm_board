@@ -30,7 +30,7 @@
 - 생성한 팀명과 비밀번호를 입력하고 입장.
 
 ### 팀 구성 페이지
-<img width="760" alt="스크린샷 2022-06-05 오전 12 46 46" src="https://user-images.githubusercontent.com/79135142/172013487-b2b12ca4-a754-42ab-865f-b6120fb65ab7.png">
+<img width="759" alt="스크린샷 2022-06-05 오전 12 53 19" src="https://user-images.githubusercontent.com/79135142/172013687-a67de59a-a8f1-4e7e-9649-9e74924df26b.png">
 
 - 팀원을 등번호, 이름, 포지션 을 입력하여 추가.
 
