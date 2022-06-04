@@ -1,5 +1,6 @@
-import styles from './squard.module.scss'
 import SquardBoard from './squardBoard'
+
+import styles from './squard.module.scss'
 
 const Squard = () => {
   return (

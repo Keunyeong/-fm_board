@@ -1,9 +1,11 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useResetRecoilState, useSetRecoilState } from 'recoil'
+
 import { KickIcon } from '../../assets/svgs'
 import { getTeamInfo } from '../../firebase/firebase'
 import { teamInfo } from '../../store/atom'
+
 import styles from './login.module.scss'
 
 const Login = () => {
