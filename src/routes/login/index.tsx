@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useResetRecoilState, useSetRecoilState } from 'recoil'
+import { KickIcon } from '../../assets/svgs'
 import { getTeamInfo } from '../../firebase/firebase'
 import { teamInfo } from '../../store/atom'
 import styles from './login.module.scss'
@@ -37,13 +38,14 @@ const Login = () => {
   }
   return (
     <main className={styles.main}>
+      <KickIcon />
       <form className={styles.loginBox} onSubmit={handleLoginSubmit}>
         <div className={styles.inputBox}>
-          <label htmlFor='teamName'>팀이름</label>
+          <label htmlFor='teamName'>TEAM</label>
           <input type='text' name='teamName' value={loginTeamInfo.teamName} onChange={handleLoginInputChange} />
         </div>
         <div className={styles.inputBox}>
-          <label htmlFor='password'>비밀번호</label>
+          <label htmlFor='password'>PW</label>
           <input type='password' name='password' value={loginTeamInfo.password} onChange={handleLoginInputChange} />
         </div>
         <button type='submit'>TEAM IN</button>

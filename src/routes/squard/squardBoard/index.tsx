@@ -4,23 +4,23 @@ const SquardBoard = () => {
   return (
     <div className={styles.board}>
       <div className={styles.field}>
-        <div className={styles.player}>9번</div>
-        <div className={styles.player}>10번</div>
+        <div className={styles.player}>9</div>
+        <div className={styles.player}>10</div>
       </div>
       <div className={styles.field}>
-        <div className={styles.player}>7번</div>
-        <div className={styles.player}>8번</div>
-        <div className={styles.player}>6번</div>
-        <div className={styles.player}>11번</div>
+        <div className={styles.player}>7</div>
+        <div className={styles.player}>8</div>
+        <div className={styles.player}>6</div>
+        <div className={styles.player}>11</div>
       </div>
       <div className={styles.field}>
-        <div className={styles.player}>2번</div>
-        <div className={styles.player}>3번</div>
-        <div className={styles.player}>5번</div>
-        <div className={styles.player}>4번</div>
+        <div className={styles.player}>2</div>
+        <div className={styles.player}>3</div>
+        <div className={styles.player}>5</div>
+        <div className={styles.player}>4</div>
       </div>
       <div className={styles.field}>
-        <div className={styles.player}>1번</div>
+        <div className={styles.player}>1</div>
       </div>
     </div>
   )

@@ -4,10 +4,10 @@ import SquardBoard from './squardBoard'
 const Squard = () => {
   return (
     <main className={styles.main}>
-      <div>
+      <div className={styles.head}>
         <h1>스쿼드 보드</h1>
       </div>
-      <div>
+      <div className={styles.board}>
         <SquardBoard />
       </div>
     </main>

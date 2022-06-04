@@ -14,6 +14,7 @@ const Team = () => {
 
   useEffect(() => {
     if (team.teamName === null) nav('/')
+    if (team.teamName === '') nav('/')
   }, [nav, team.teamName])
 
   const handleInputNameChange = (e: ChangeEvent<HTMLInputElement>) => {
