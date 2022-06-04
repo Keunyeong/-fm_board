@@ -58,7 +58,7 @@ const Signin = () => {
       </div>
       <form className={styles.signinBox} onSubmit={handleTeamInfoSubmit}>
         <div className={styles.inputBox}>
-          <label htmlFor='teamName'>팀이름</label>
+          <label htmlFor='teamName'>팀 이름</label>
           <input
             type='text'
             autoComplete='off'

@@ -50,7 +50,7 @@ const Login = () => {
         </div>
         <button type='submit'>TEAM IN</button>
       </form>
-      <div className={styles.makeTeam}>아직 팀이 없다면 만드세요!</div>
+      <div className={styles.makeTeam}>▼ ▼ ▼ 아직 팀이 없다면 만드세요! ▼ ▼ ▼</div>
       <Link to='/signin' className={styles.linkBtn}>
         TEAM SET
       </Link>
