@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+import { FieldIcon } from '../../assets/svgs'
 import { setTeamMemberData } from '../../firebase/firebase'
 import { teamInfo } from '../../store/atom'
 import { IPlayerInfo } from '../../types/types.d'
@@ -58,7 +59,11 @@ const Team = () => {
     <main className={styles.main}>
       <div className={styles.head}>
         <h1>TEAM - {team.teamName}</h1>
-        {team.member.length >= 11 && <Link to='/squard'>스쿼드</Link>}
+        {team.member.length >= 11 && (
+          <Link to='/squard'>
+            <FieldIcon />
+          </Link>
+        )}
       </div>
       <div className={styles.formBox}>
         <div className={styles.formHead}>
