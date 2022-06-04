@@ -1,18 +1,15 @@
 import { ChangeEvent, FormEvent, MouseEvent, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+
 import { teamList } from '../../store/atom'
 import { IPlayerInfo } from '../../types/types.d'
-import styles from './team.module.scss'
 
-// const PLAYERINFO = {
-//   name: '이근영',
-//   position: 'FW',
-//   backNum: '19',
-// }
+import styles from './team.module.scss'
 
 const Team = () => {
   const [playerList, setPlayerList] = useRecoilState(teamList)
-  const [playerInfo, setPlayerInfo] = useState<IPlayerInfo>({ num: 0, name: '', position: '' })
+  const [playerInfo, setPlayerInfo] = useState<IPlayerInfo>({ num: '', name: '', position: '' })
 
   const handleInputNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.currentTarget
@@ -21,6 +18,11 @@ const Team = () => {
   }
   const handleAddPlayerSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (playerInfo.name === '') return
+    if (playerInfo.position === '') return
+    if (playerInfo.num === '') return
+    const numArr = playerList.map((item) => Number(item.num))
+    if (numArr.includes(Number(playerInfo.num))) return
     setPlayerList((prev) => [...prev, playerInfo])
   }
   const handleDeletePlayerBtnClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -32,6 +34,7 @@ const Team = () => {
     const key = `playerList${index}`
     return (
       <li key={key} className={styles.li}>
+        <div>{index + 1}</div>
         <div>{item.num}</div>
         <div>{item.name}</div>
         <div>{item.position}</div>
@@ -44,31 +47,40 @@ const Team = () => {
   return (
     <main className={styles.main}>
       <div className={styles.head}>
-        <h1>팀 빌딩</h1>
+        <h1>TEAM</h1>
+        {playerList.length >= 11 && <Link to='/squard'>스쿼드</Link>}
       </div>
       <div className={styles.formBox}>
-        <div>
-          <h2>선수 추가</h2>
+        <div className={styles.formHead}>
+          <h2>선수 등록</h2>
         </div>
         <form action='submit' onSubmit={handleAddPlayerSubmit} className={styles.form}>
-          <label htmlFor='num'>등번호</label>
-          <input type='number' name='num' value={playerInfo.num} onChange={handleInputNameChange} />
-          <label htmlFor='name'>이름</label>
-          <input type='text' name='name' value={playerInfo.name} onChange={handleInputNameChange} />
-          <label htmlFor='position'>포지션</label>
-          <input type='text' name='position' value={playerInfo.position} onChange={handleInputNameChange} />
-          <button type='submit'>선수 추가</button>
+          <div>
+            <div>
+              <label htmlFor='num'>등번호</label>
+              <input type='number' name='num' value={playerInfo.num} onChange={handleInputNameChange} min={0} />
+            </div>
+            <div>
+              <label htmlFor='name'>이름</label>
+              <input type='text' name='name' value={playerInfo.name} onChange={handleInputNameChange} />
+            </div>
+            <div>
+              <label htmlFor='position'>포지션</label>
+              <input type='text' name='position' value={playerInfo.position} onChange={handleInputNameChange} />
+            </div>
+          </div>
+
+          <button type='submit'>등록</button>
         </form>
       </div>
-      <ul className={styles.playerList}>
-        <li className={styles.liHead}>
-          <div>BackNumber</div>
-          <div>Name</div>
-          <div>Position</div>
-          <div>Delete</div>
-        </li>
-        {PlayerList}
-      </ul>
+      <div className={styles.liHead}>
+        <div>Num</div>
+        <div>BackNum</div>
+        <div>Name</div>
+        <div>Position</div>
+        <div>Delete</div>
+      </div>
+      <ul className={styles.playerList}>{PlayerList}</ul>
     </main>
   )
 }

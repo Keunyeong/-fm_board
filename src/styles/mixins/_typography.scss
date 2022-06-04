@@ -14,3 +14,10 @@
   font-weight: 900;
   line-height: 30px;
 }
+
+@mixin head16() {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 19px;
+}

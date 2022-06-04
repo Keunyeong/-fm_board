@@ -1,5 +1,5 @@
 export interface IPlayerInfo {
-  num: number
+  num: string
   name: string
   position: string
 }
