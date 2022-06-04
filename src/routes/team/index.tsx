@@ -47,7 +47,7 @@ const Team = () => {
         <div>{index + 1}</div>
         <div>{item.num}</div>
         <div>{item.name}</div>
-        <div>{item.position}</div>
+        <div>{item.position.toUpperCase()}</div>
         <button type='button' data-num={item.num} onClick={handleDeletePlayerBtnClick}>
           X
         </button>

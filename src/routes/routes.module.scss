@@ -1,3 +1,5 @@
+@use '../styles/constants/colors';
+
 .main {
   display: flex;
   align-items: center;
@@ -6,4 +8,8 @@
   min-width: 320px;
   height: 100vh;
   padding: 20px 40px;
+  @media screen and (max-width: 750px) {
+    padding: 10px 20px;
+  }
+  background-color: colors.$BG;
 }
