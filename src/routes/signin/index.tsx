@@ -66,8 +66,8 @@ const Signin = () => {
             name='teamName'
             onChange={handleTeamInfoChange}
           />
-          {isTeamName && <div>이미 존재하는 아이디 입니다.</div>}
         </div>
+        {isTeamName && <div className={styles.isName}>이미 존재하는 이름 입니다.</div>}
         <div className={styles.inputBox}>
           <label htmlFor='password'>비밀번호</label>
           <input

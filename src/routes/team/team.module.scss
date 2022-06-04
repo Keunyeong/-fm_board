@@ -1,4 +1,5 @@
 @use '../../styles/mixins/typography';
+@use '../../styles/constants/colors';
 
 .head {
   display: flex;
@@ -6,6 +7,7 @@
   justify-content: space-between;
   width: 100%;
   height: 60px;
+  box-shadow: 0 4px 4px -4px colors.$GRAY3;
 
   h1 {
     @include typography.head26;
@@ -70,7 +72,8 @@
     height: 70px;
     padding: 10px 20px;
     margin-top: 10px;
-    border: 1px solid black;
+    color: colors.$WHITE;
+    background-color: colors.$GRAY6;
     border-radius: 10px;
   }
 }
@@ -97,6 +100,7 @@
 .playerList {
   width: 320px;
   height: 100%;
+  padding: 5px;
   overflow: auto;
 
   .li {
@@ -105,8 +109,8 @@
     justify-content: space-between;
     height: 50px;
     margin: 5px 0;
-    border: 1px solid blue;
     border-radius: 10px;
+    box-shadow: 0 0 4px colors.$GRAY3;
 
     div {
       width: 100px;
