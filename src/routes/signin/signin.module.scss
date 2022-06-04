@@ -1,22 +1,35 @@
 @use '../../styles/constants/colors';
+@use '../../styles/mixins/typography';
 
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
 }
 
-.loginBox {
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+
+  h1 {
+    @include typography.head26;
+  }
+}
+
+.signinBox {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  height: 100%;
   margin-top: 30px;
-  margin-bottom: 10px;
 
   button {
     width: 280px;
@@ -39,19 +52,4 @@
     background-color: none;
     border-bottom: 2px solid #e6e6e6;
   }
-}
-
-.makeTeam {
-  margin-bottom: 10px;
-}
-
-.linkBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 280px;
-  height: 50px;
-  font-size: 20px;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
 }

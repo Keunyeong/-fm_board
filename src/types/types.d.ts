@@ -3,3 +3,10 @@ export interface IPlayerInfo {
   name: string
   position: string
 }
+
+export interface ITeamInfo {
+  teamName: string
+  password: string
+  passwordConfirm: string
+  member: IPlayerInfo[]
+}

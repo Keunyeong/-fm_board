@@ -1,15 +1,19 @@
-import { ChangeEvent, FormEvent, MouseEvent, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
-
-import { teamList } from '../../store/atom'
+import { teamInfo } from '../../store/atom'
 import { IPlayerInfo } from '../../types/types.d'
 
 import styles from './team.module.scss'
 
 const Team = () => {
-  const [playerList, setPlayerList] = useRecoilState(teamList)
+  const nav = useNavigate()
+  const [team, setTeam] = useRecoilState(teamInfo)
   const [playerInfo, setPlayerInfo] = useState<IPlayerInfo>({ num: '', name: '', position: '' })
+
+  useEffect(() => {
+    if (team.teamName === null) nav('/')
+  }, [nav, team.teamName])
 
   const handleInputNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.currentTarget
@@ -21,16 +25,16 @@ const Team = () => {
     if (playerInfo.name === '') return
     if (playerInfo.position === '') return
     if (playerInfo.num === '') return
-    const numArr = playerList.map((item) => Number(item.num))
+    const numArr = team.member.map((item) => Number(item.num))
     if (numArr.includes(Number(playerInfo.num))) return
-    setPlayerList((prev) => [...prev, playerInfo])
+    setTeam((prev) => ({ ...prev, member: [...prev.member, playerInfo] }))
   }
   const handleDeletePlayerBtnClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { num } = e.currentTarget.dataset
-    setPlayerList((prev) => prev.filter((item) => Number(item.num) !== Number(num)))
+    setTeam((prev) => ({ ...prev, member: prev.member.filter((item) => item.num !== num) }))
   }
 
-  const PlayerList = playerList.map((item, index) => {
+  const PlayerList = team.member.map((item, index) => {
     const key = `playerList${index}`
     return (
       <li key={key} className={styles.li}>
@@ -48,7 +52,7 @@ const Team = () => {
     <main className={styles.main}>
       <div className={styles.head}>
         <h1>TEAM</h1>
-        {playerList.length >= 11 && <Link to='/squard'>스쿼드</Link>}
+        {team.member.length >= 11 && <Link to='/squard'>스쿼드</Link>}
       </div>
       <div className={styles.formBox}>
         <div className={styles.formHead}>
