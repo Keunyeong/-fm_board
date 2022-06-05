@@ -60,11 +60,23 @@ const Login = () => {
       <form className={styles.loginBox} onSubmit={handleLoginSubmit}>
         <div className={styles.inputBox}>
           <label htmlFor='teamName'>TEAM</label>
-          <input type='text' name='teamName' value={loginTeamInfo.teamName} onChange={handleLoginInputChange} />
+          <input
+            type='text'
+            name='teamName'
+            value={loginTeamInfo.teamName}
+            onChange={handleLoginInputChange}
+            placeholder='팀 이름'
+          />
         </div>
         <div className={styles.inputBox}>
           <label htmlFor='password'>PW</label>
-          <input type='password' name='password' value={loginTeamInfo.password} onChange={handleLoginInputChange} />
+          <input
+            type='password'
+            name='password'
+            value={loginTeamInfo.password}
+            onChange={handleLoginInputChange}
+            placeholder='팀 비밀번호'
+          />
         </div>
         <button type='submit'>TEAM IN</button>
       </form>

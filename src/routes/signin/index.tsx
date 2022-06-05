@@ -83,6 +83,7 @@ const Signin = () => {
             value={signinTeamInfo.teamName}
             name='teamName'
             onChange={handleTeamInfoChange}
+            placeholder='팀 이름'
           />
         </div>
         {isTeamName && <div className={styles.isName}>이미 존재하는 이름 입니다.</div>}
@@ -94,6 +95,7 @@ const Signin = () => {
             name='password'
             value={signinTeamInfo.password}
             onChange={handleTeamInfoChange}
+            placeholder='비밀번호'
           />
         </div>
         <div className={styles.inputBox}>
@@ -104,6 +106,7 @@ const Signin = () => {
             name='passwordConfirm'
             value={signinTeamInfo.passwordConfirm}
             onChange={handleTeamInfoChange}
+            placeholder='비밀번호 확인'
           />
         </div>
         <button type='submit'>등 록</button>
