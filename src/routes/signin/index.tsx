@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+import Modal from '../../components/Modal/Modal'
 
 import { getTeamInfo, setTeamMemberData } from '../../firebase/firebase'
 import { teamInfo } from '../../store/atom'
@@ -10,6 +11,8 @@ import styles from './signin.module.scss'
 
 const Signin = () => {
   const nav = useNavigate()
+  const [isModal, setIsModal] = useState(false)
+  const [modalText, setModalText] = useState('비밀번호가 일치하지 않습니다. 다시 입력해 주세요.')
   const [team, setTeamInfo] = useRecoilState(teamInfo)
   useEffect(() => {
     if (team.teamName !== '') nav('/')
@@ -24,15 +27,14 @@ const Signin = () => {
   const handleTeamInfoSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (isTeamName) {
-      // eslint-disable-next-line no-alert
-      alert('팀이름을 다시 입력해 주세요.')
+      setModalText('팀이름을 다시 입력해 주세요.')
+      setIsModal(true)
       return
     }
     if (signinTeamInfo.teamName === '') return
     if (signinTeamInfo.password === '') return
     if (signinTeamInfo.password !== signinTeamInfo.passwordConfirm) {
-      // eslint-disable-next-line no-alert
-      alert('비밀번호가 일치하지 않습니다. 다시 입력해 주세요.')
+      setIsModal(true)
     } else {
       setTeamMemberData(signinTeamInfo.teamName, signinTeamInfo)
       setTeamInfo(signinTeamInfo)
@@ -53,8 +55,21 @@ const Signin = () => {
     }
     setSigninTeamInfo((prev) => ({ ...prev, [name]: value }))
   }
+  const handleModalCloseClick = () => {
+    setIsModal(false)
+  }
   return (
     <main className={styles.main}>
+      {isModal && (
+        <Modal>
+          <div className={styles.modal}>
+            <button className={styles.modalCloseBtn} type='button' onClick={handleModalCloseClick}>
+              X
+            </button>
+            <div>{modalText}</div>
+          </div>
+        </Modal>
+      )}
       <div className={styles.head}>
         <h1>팀 생성</h1>
       </div>
