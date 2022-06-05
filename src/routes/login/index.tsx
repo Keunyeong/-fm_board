@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useResetRecoilState, useSetRecoilState } from 'recoil'
 
 import { KickIcon } from '../../assets/svgs'
+import Modal from '../../components/Modal/Modal'
 import { getTeamInfo } from '../../firebase/firebase'
 import { teamInfo } from '../../store/atom'
 
@@ -10,6 +11,8 @@ import styles from './login.module.scss'
 
 const Login = () => {
   const nav = useNavigate()
+  const [isModal, setIsModal] = useState(false)
+  const [modalText, setModalText] = useState('비밀번호가 일치하지 않습니다. 다시 입력해 주세요.')
   const setTeamInfo = useSetRecoilState(teamInfo)
   const resetTeamInfo = useResetRecoilState(teamInfo)
   const [loginTeamInfo, setLoginTeamInfo] = useState({ teamName: '', password: '' })
@@ -29,17 +32,30 @@ const Login = () => {
           setTeamInfo({ teamName, password, passwordConfirm, member })
           nav('/team')
         } else {
-          // eslint-disable-next-line no-alert
-          alert('비밀번호가 맞지 않습니다.')
+          setModalText('비밀번호가 맞지 않습니다.')
+          setIsModal(true)
         }
       } else {
-        // eslint-disable-next-line no-alert
-        alert('없는 아이디 입니다.')
+        setModalText('없는 이름 입니다.')
+        setIsModal(true)
       }
     })
   }
+  const handleModalCloseClick = () => {
+    setIsModal(false)
+  }
   return (
     <main className={styles.main}>
+      {isModal && (
+        <Modal>
+          <div className={styles.modal}>
+            <button className={styles.modalCloseBtn} type='button' onClick={handleModalCloseClick}>
+              X
+            </button>
+            <div>{modalText}</div>
+          </div>
+        </Modal>
+      )}
       <KickIcon />
       <form className={styles.loginBox} onSubmit={handleLoginSubmit}>
         <div className={styles.inputBox}>

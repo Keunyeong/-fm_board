@@ -34,6 +34,7 @@ const Signin = () => {
     if (signinTeamInfo.teamName === '') return
     if (signinTeamInfo.password === '') return
     if (signinTeamInfo.password !== signinTeamInfo.passwordConfirm) {
+      setModalText('비밀번호가 일치하지 않습니다. 다시 입력해 주세요.')
       setIsModal(true)
     } else {
       setTeamMemberData(signinTeamInfo.teamName, signinTeamInfo)
