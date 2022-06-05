@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import Modal from '../../components/Modal/Modal'
@@ -12,11 +12,10 @@ import styles from './signin.module.scss'
 const Signin = () => {
   const nav = useNavigate()
   const [isModal, setIsModal] = useState(false)
+  const [isRegistrated, setIsRegistrated] = useState(false)
   const [modalText, setModalText] = useState('비밀번호가 일치하지 않습니다. 다시 입력해 주세요.')
-  const [team, setTeamInfo] = useRecoilState(teamInfo)
-  useEffect(() => {
-    if (team.teamName !== '') nav('/')
-  }, [nav, team.teamName])
+  const [, setTeamInfo] = useRecoilState(teamInfo)
+
   const [signinTeamInfo, setSigninTeamInfo] = useState<ITeamInfo>({
     teamName: '',
     password: '',
@@ -39,7 +38,9 @@ const Signin = () => {
     } else {
       setTeamMemberData(signinTeamInfo.teamName, signinTeamInfo)
       setTeamInfo(signinTeamInfo)
-      nav('/team')
+      setModalText('팀이 등록 되었습니다. 다시 로그인해 주세요.')
+      setIsModal(true)
+      setIsRegistrated(true)
     }
   }
   const handleTeamInfoChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -58,6 +59,12 @@ const Signin = () => {
   }
   const handleModalCloseClick = () => {
     setIsModal(false)
+    if (isRegistrated) {
+      nav('/')
+    }
+  }
+  const handleSigninCancelClick = () => {
+    nav('/')
   }
   return (
     <main className={styles.main}>
@@ -110,6 +117,9 @@ const Signin = () => {
           />
         </div>
         <button type='submit'>등 록</button>
+        <button type='button' onClick={handleSigninCancelClick}>
+          취 소
+        </button>
       </form>
     </main>
   )

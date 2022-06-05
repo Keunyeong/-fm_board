@@ -25,6 +25,8 @@ const Login = () => {
   }
   const handleLoginSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (loginTeamInfo.teamName === '') return
+    if (loginTeamInfo.password === '') return
     getTeamInfo(loginTeamInfo.teamName).then((docSnap) => {
       if (docSnap.exists()) {
         const { teamName, password, passwordConfirm, member } = docSnap.data()
@@ -82,7 +84,7 @@ const Login = () => {
       </form>
       <div className={styles.makeTeam}>▼ ▼ ▼ 아직 팀이 없다면 만드세요! ▼ ▼ ▼</div>
       <Link to='/signin' className={styles.linkBtn}>
-        TEAM SET
+        TEAM UP
       </Link>
     </main>
   )
